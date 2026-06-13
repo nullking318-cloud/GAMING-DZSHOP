@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gamer's Card Shop | بطاقات بلايستيشن</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">🎮 Gamer's <span>Card Shop</span></div>
+  <ul class="nav-links">
+    <li><a href="#products">الأكواد المتوفرة</a></li>
+    <li><a href="#how">طريقة الشحن</a></li>
+    <li><a href="#support">الدعم الفني</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>تسليم فوري، متعتك تبدأ الآن 🚀</h1>
+  <p class="subtitle" id="subtitle">أرخص بطاقات بلايستيشن في الجزائر، شحن مباشر بعد التأكيد!</p>
+  <a href="#products" class="btn-glow">اطلب الآن</a>
+</section>
+
+<section id="products" class="products-section">
+  <h2 class="section-title">الأكواد المتوفرة</h2>
+  <div class="products-grid">
+    <div class="card" data-price="10" data-dzd="1800">
+      <div class="card-icon">💳</div>
+      <h3>بطاقة 5€</h3>
+      <p class="price">1600 دج</p>
+      <a href="#order" class="btn-small">اطلب الآن</a>
+    </div>
+    <div class="card" data-price="25" data-dzd="4300">
+      <div class="card-icon">💳</div>
+      <h3>بطاقة 10€</h3>
+      <p class="price">3400 دج</p>
+      <a href="#order" class="btn-small">اطلب الآن</a>
+    </div>
+    <div class="card" data-price="50" data-dzd="8500">
+      <div class="card-icon">💳</div>
+      <h3>بطاقة 15€ </h3>
+      <p class="price">4500 دج</p>
+      <a href="#order" class="btn-small">اطلب الآن</a>
+    </div>
+    <div class="card" data-price="100" data-dzd="16500">
+      <div class="card-icon">💳</div>
+      <h3>بطاقة 20€ </h3>
+      <p class="price">6200 دج</p>
+      <a href="#order" class="btn-small">اطلب الآن</a>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how-section">
+  <h2 class="section-title">طريقة الشحن</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <p>اختر البطاقة المناسبة من القائمة في نموذج الطلب.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <p>قم بالتحويل عبر BaridiMob أو CCP إلى الحساب الموضح.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <p>أرفق صورة الوصل وأكد الطلب.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">4</span>
+      <p>استلم الكود فوراً بعد التحقق من الدفع.</p>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order-section">
+  <div class="order-form-container">
+    <h2 class="section-title">إتمام الطلب</h2>
+    <form id="orderForm">
+      <label for="cardSelect">اختر البطاقة</label>
+      <select id="cardSelect" required>
+        <option value="">-- اختر --</option>
+        <option value="10" data-dzd="1800">بطاقة 5€ - 1600 دج</option>
+        <option value="25" data-dzd="4300">بطاقة 10€ - 3400 دج</option>
+        <option value="50" data-dzd="8500">بطاقة 15€ - 4500 دج</option>
+        <option value="100" data-dzd="16500">بطاقة 20€ - 6200 دج</option>
+      </select>
+
+      <div class="price-display">
+        <span>المبلغ المطلوب دفعه:</span>
+        <strong id="priceOutput">0 دج</strong>
+      </div>
+
+      <div class="payment-info">
+        <h4>معلومات الدفع</h4>
+        <p>📱 BaridiMob: <span class="highlight">00799999004390466974</span></p>
+        <p>🏦 CCP: <span class="highlight">0043904669 المفتاح: 85</span></p>
+        <p class="note">⚠️ يرجى كتابة اسمك الكامل في تفاصيل التحويل</p>
+      </div>
+
+      <label for="fullName">الاسم الكامل</label>
+      <input type="text" id="fullName" placeholder="الاسم و اللقب" required>
+
+      <label for="phone">رقم الهاتف</label>
+      <input type="tel" id="phone" placeholder="06XXXXXXXX" required>
+
+      <label for="receipt">إرفاق صورة الوصل</label>
+      <input type="file" id="receipt" accept="image/*" required>
+
+      <button type="submit" class="btn-glow full-width">تأكيد الطلب</button>
+    </form>
+  </div>
+
+  <aside class="live-feed">
+    <h3>🔥 آخر الطلبات</h3>
+    <ul id="liveList">
+      <li>محمد اشترى بطاقة 10$ قبل قليل</li>
+      <li>أمين اشترى بطاقة 25$ منذ دقيقتين</li>
+      <li>ياسين اشترى بطاقة 50$ منذ 5 دقائق</li>
+    </ul>
+  </aside>
+</section>
+
+<section id="support" class="support-section">
+  <h2 class="section-title">الدعم الفني</h2>
+  <p>لأي استفسار، تواصل معنا عبر واتساب وسنرد عليك في أقرب وقت ممكن.</p>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Gamer's Card Shop - جميع الحقوق محفوظة</p>
+</footer>
+
+<a href="https://wa.me/213658996502" target="_blank" class="whatsapp-btn">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+    <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.95 7.95 0 0 0 7.94-7.94 7.9 7.9 0 0 0-2.4-5.64zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.66-2.43-.16-.25a6.6 6.6 0 0 1 10.2-8.27 6.55 6.55 0 0 1 1.94 4.66 6.6 6.6 0 0 1-6.54 6.7zm3.6-4.94c-.2-.1-1.17-.58-1.35-.64-.18-.07-.32-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.14-.42.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.1-1.35-.11-.2-.01-.31.1-.42.1-.1.22-.27.34-.4.11-.13.15-.23.22-.38.07-.15.04-.28-.02-.38-.07-.1-.6-1.45-.82-1.98-.22-.53-.45-.46-.62-.46-.16-.01-.34-.01-.52-.01-.18 0-.46.07-.7.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.64 1.12 2.82.13.18 1.84 2.82 4.47 3.83 2.62 1.02 2.62.68 3.1.64.47-.04 1.52-.62 1.74-1.22.21-.6.21-1.11.15-1.22-.07-.1-.25-.16-.45-.26z"/>
+  </svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
