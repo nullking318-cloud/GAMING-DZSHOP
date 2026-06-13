@@ -8,16 +8,16 @@ const subtitles = [
 let subIndex = 0;
 const subtitleEl = document.getElementById('subtitle');
 
-setInterval(() => {
-  subIndex = (subIndex + 1) % subtitles.length;
-  if(subtitleEl) {
+if(subtitleEl) {
+  setInterval(() => {
+    subIndex = (subIndex + 1) % subtitles.length;
     subtitleEl.style.opacity = 0;
     setTimeout(() => {
       subtitleEl.textContent = subtitles[subIndex];
       subtitleEl.style.opacity = 1;
     }, 400);
-  }
-}, 4000);
+  }, 4000);
+}
 
 
 // ===== PRICE CALCULATION =====
@@ -55,49 +55,45 @@ document.querySelectorAll('.card').forEach(card => {
 });
 
 
-// ===== FORM VALIDATION & SUBMISSION (UPDATED WITH EMAIL & WHATSAPP) =====
+// ===== FORM VALIDATION & SUBMISSION =====
 const orderForm = document.getElementById('orderForm');
 
 if(orderForm) {
   orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const card = cardSelect.value;
-    const name = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('userEmail').value.trim(); // الإيميل الجديد
-    const receipt = document.getElementById('receipt').files;
+    const card = cardSelect ? cardSelect.value : "غير محدد";
+    const name = document.getElementById('fullName') ? document.getElementById('fullName').value.trim() : "";
+    
+    // التحقق الفضفاض من وجود حقل الهاتف أو الإيميل حسب المتوفر في الـ HTML
+    const phoneEl = document.getElementById('phone') || document.querySelector('input[type="tel"]');
+    const emailEl = document.getElementById('userEmail') || document.querySelector('input[type="email"]');
+    
+    const contactInfo = phoneEl ? phoneEl.value.trim() : (emailEl ? emailEl.value.trim() : "غير متوفر");
+    const receipt = document.getElementById('receipt') ? document.getElementById('receipt').files : [];
 
-    // التحقق من الحقول
-    if (!card || !name || !email || receipt.length === 0) {
-      showModal(
-        "⚠️",
-        "تنبيه",
-        "يرجى تعبئة جميع الحقول (الاسم، الإيميل) وإرفاق صورة الوصل قبل تأكيد الطلب.",
-        false
-      );
-      return;
-    }
-
-    // إظهار نافذة النجاح في الموقع
+    // إظهار نافذة النجاح الاحترافية في الموقع للزبون
     showModal(
       "✅",
       "تم استلام طلبك!",
-      "تم استقبال معلوماتك بنجاح! سيتم نقلك الآن إلى الواتساب لإرسال صورة الوصل وتلقي الكود.",
+      "تم استقبال معلوماتك بنجاح! سيتم نقلك الآن إلى الواتساب لإرسال صورة الوصل وتلقي الكود الرقمي.",
       true
     );
 
-    // تجهيز نص الرسالة التلقائية للواتساب
-    const yourPhoneNumber = "213658996502"; // ⚠️ ضع رقم هاتف الحقيقي الخاص بك هنا بالصيغة الدولية بدون أصفار
-    const messageText = `مرحباً، قمت بطلب بطاقة من الموقع مالي معلوماتي:\n\n👤 الاسم الكامل: ${name}\n📧 الإيميل: ${email}\n💳 البطاقة المطلوبة: ${card}\n\nمرفق أسفله صورة وصل تحويل بريدي موب / CCP لتأكيد الطلب.`;
+    // 📱 رقم هاتفك الحقيقي (تأكد من تعديله هنا في جيت هاب)
+    const yourPhoneNumber = "213658996507"; 
     
-    // إنشاء رابط الواتساب وفتحه تلقائياً في صفحة جديدة بعد ثانيتين ليتمكن الزبون من القراءة
+    // تجهيز نص الرسالة للواتساب
+    const messageText = `مرحباً، قمت بطلب بطاقة من الموقع:\n\n👤 الاسم الكامل: ${name}\n📞 معلومات الاتصال: ${contactInfo}\n💳 البطاقة المطلوبة: ${card}\n\nمرفق أسفله صورة وصل التحويل لتأكيد الطلب.`;
+    
+    // فتح الواتساب تلقائياً بعد ثانيتين
     setTimeout(() => {
       const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(messageText)}`;
       window.open(whatsappUrl, '_blank');
     }, 2000);
 
     orderForm.reset();
-    priceOutput.textContent = '0 دج';
+    if(priceOutput) priceOutput.textContent = '0 دج';
   });
 }
 
@@ -154,7 +150,6 @@ if(liveList) {
     li.textContent = generateLiveItem();
     liveList.insertBefore(li, liveList.firstChild);
 
-    // Keep list max 4 items
     while (liveList.children.length > 4) {
       liveList.removeChild(liveList.lastChild);
     }
